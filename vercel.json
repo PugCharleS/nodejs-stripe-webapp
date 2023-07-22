@@ -8,6 +8,18 @@
   ],
   "routes": [
     {
+      "src": "/success.html",
+      "dest": "/src/public/success.html"
+    },
+    {
+      "src": "/cancel.html",
+      "dest": "/src/public/cancel.html"
+    },
+    {
+      "src": "/",
+      "dest": "/src/public/index.html"
+    },
+    {
       "src": "/(.*)",
       "dest": "index.js"
     }
