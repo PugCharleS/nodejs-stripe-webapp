@@ -25,28 +25,42 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="css/style.css" />
     <script>
-      $(document).ready(function () {
-        $(".wish-icon i").click(function () {
-          $(this).toggleClass("fa-heart fa-heart-o");
+      document.addEventListener("DOMContentLoaded", function () {
+        let wishIcons = document.querySelectorAll(".wish-icon i");
+        wishIcons.forEach((icon) => {
+          icon.addEventListener("click", function () {
+            this.classList.toggle("fa-heart");
+            this.classList.toggle("fa-heart-o");
+          });
         });
-      });
 
-      $(document).ready(function () {
-        $(".btn-primary").click(function (event) {
-          event.preventDefault();
+        let primaryButtons = document.querySelectorAll(".btn-primary");
+        primaryButtons.forEach((button) => {
+          button.addEventListener("click", function (event) {
+            event.preventDefault();
 
-          var productName = $(this).parent().find("h4").text();
-          var productPrice = $(this)
-            .parent()
-            .find(".item-price b")
-            .text()
-            .slice(1);
+            let productName = this.parentNode.querySelector("h4").textContent;
+            let productPrice =
+              Number(
+                this.parentNode
+                  .querySelector(".item-price b")
+                  .textContent.slice(1)
+              ) * 100;
 
-          $.post("/create-checkout-session", {
-            productName: productName,
-            productPrice: productPrice * 100,
-          }).done(function (data) {
-            window.location.href = data.url;
+            fetch("/create-checkout-session", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                productName: productName,
+                productPrice: productPrice,
+              }),
+            })
+              .then((response) => response.json())
+              .then((data) => {
+                window.location.href = data.url;
+              });
           });
         });
       });
