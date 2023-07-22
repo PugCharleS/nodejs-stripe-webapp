@@ -39,19 +39,16 @@
                   .textContent.slice(1)
               ) * 100;
 
-            fetch(
-              "https://pasarela-de-pago-unir.vercel.app/create-checkout-session",
-              {
-                method: "POST",
-                headers: {
-                  "Content-Type": "application/json",
-                },
-                body: JSON.stringify({
-                  productName: productName,
-                  productPrice: productPrice,
-                }),
-              }
-            )
+            fetch("/create-checkout-session", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                productName: productName,
+                productPrice: productPrice,
+              }),
+            })
               .then((response) => response.json())
               .then((data) => {
                 window.location.href = data.url;
