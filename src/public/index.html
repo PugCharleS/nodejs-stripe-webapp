@@ -26,14 +26,6 @@
     <link rel="stylesheet" href="css/style.css" />
     <script>
       document.addEventListener("DOMContentLoaded", function () {
-        let wishIcons = document.querySelectorAll(".wish-icon i");
-        wishIcons.forEach((icon) => {
-          icon.addEventListener("click", function () {
-            this.classList.toggle("fa-heart");
-            this.classList.toggle("fa-heart-o");
-          });
-        });
-
         let primaryButtons = document.querySelectorAll(".btn-primary");
         primaryButtons.forEach((button) => {
           button.addEventListener("click", function (event) {
@@ -47,16 +39,19 @@
                   .textContent.slice(1)
               ) * 100;
 
-            fetch("/create-checkout-session", {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-              },
-              body: JSON.stringify({
-                productName: productName,
-                productPrice: productPrice,
-              }),
-            })
+            fetch(
+              "https://pasarela-de-pago-unir.vercel.app/create-checkout-session",
+              {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                  productName: productName,
+                  productPrice: productPrice,
+                }),
+              }
+            )
               .then((response) => response.json())
               .then((data) => {
                 window.location.href = data.url;
