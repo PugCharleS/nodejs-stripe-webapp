@@ -21,8 +21,8 @@ export const createSession = async (req, res) => {
         },
       ],
       mode: "payment",
-      success_url: "https://pasarela-de-pago-unir.vercel.app/success",
-      cancel_url: "https://pasarela-de-pago-unir.vercel.app/cancel",
+      success_url: "https://pasarela-de-pago-production.up.railway.app/success",
+      cancel_url: "https://pasarela-de-pago-production.up.railway.app/cancel",
     });
 
     console.log(session);
