@@ -4,9 +4,51 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Cancel</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #f4f4f4;
+      }
+      .cancel-container {
+        text-align: center;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        padding: 20px;
+        background-color: #fff;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+      }
+      .cancel-container h1 {
+        color: #444;
+        margin-bottom: 20px;
+      }
+      .cancel-container a {
+        display: inline-block;
+        text-decoration: none;
+        color: #fff;
+        background-color: #3498db;
+        padding: 10px 20px;
+        border-radius: 5px;
+        transition: background-color 0.3s ease;
+      }
+      .cancel-container a:hover {
+        background-color: #2980b9;
+      }
+    </style>
   </head>
   <body>
-    <h1>Order was cancelled</h1>
-    <a href="/">Go back</a>
+    <div class="cancel-container">
+      <h1>Order was cancelled</h1>
+      <p>
+        We're sorry to see that you cancelled your order. If you have any
+        questions or encountered any issues, please contact our support.
+      </p>
+      <a href="/">Go back</a>
+    </div>
   </body>
 </html>
